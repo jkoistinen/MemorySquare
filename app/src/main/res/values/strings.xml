@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MemorySquare</string>
+    <string name="title_activity_start_game">MemorySquare</string>
 </resources>
