@@ -17,11 +17,38 @@ public class PlayGameActivity extends AppCompatActivity {
 
         //set onclicklistener for imagebuttons
         ImageButton redButton = (ImageButton) findViewById(R.id.redButton);
+        ImageButton yellowButton = (ImageButton) findViewById(R.id.yellowButton);
+        ImageButton blueButton = (ImageButton) findViewById(R.id.blueButton);
+        ImageButton greenButton = (ImageButton) findViewById(R.id.greenButton);
 
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Red", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Red", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        yellowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Yellow", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Blue", Snackbar.LENGTH_SHORT)
+                        .setAction("Action", null).show();
+            }
+        });
+
+        greenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Green", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
             }
         });
