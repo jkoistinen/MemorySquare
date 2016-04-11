@@ -1,11 +1,14 @@
 package com.jk.memorysquare;
 
+import android.animation.AnimatorInflater;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 
 public class PlayGameActivity extends AppCompatActivity {
@@ -26,6 +29,9 @@ public class PlayGameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Red", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
+
+                RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
+                view.startAnimation(ranim);
             }
         });
 
@@ -34,6 +40,9 @@ public class PlayGameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Yellow", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
+
+                RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
+                view.startAnimation(ranim);
             }
         });
 
@@ -42,6 +51,9 @@ public class PlayGameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Blue", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
+
+                RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
+                view.startAnimation(ranim);
             }
         });
 
@@ -50,8 +62,13 @@ public class PlayGameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Green", Snackbar.LENGTH_SHORT)
                         .setAction("Action", null).show();
+
+                RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
+                view.startAnimation(ranim);
             }
         });
+
+
 
     }
 }
