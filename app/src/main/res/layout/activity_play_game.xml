@@ -17,17 +17,17 @@ tools:context="com.jk.memorysquare.PlayGameActivity"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:id="@+id/redButton"
-            android:src="@android:drawable/ic_menu_gallery"
             android:layout_weight="1"
-            android:background="#d50000" />
+            android:background="@drawable/imagebuttonanimation_red"
+            android:src="@mipmap/ic_launcher" />
 
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:id="@+id/yellowButton"
-            android:src="@android:drawable/ic_menu_gallery"
+            android:src="@mipmap/ic_launcher"
             android:layout_weight="1"
-            android:background="#ffea00" />
+            android:background="@drawable/imagebuttonanimation_yellow" />
     </LinearLayout>
 
     <LinearLayout
@@ -40,17 +40,17 @@ tools:context="com.jk.memorysquare.PlayGameActivity"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:id="@+id/blueButton"
-            android:src="@android:drawable/ic_menu_gallery"
+            android:src="@mipmap/ic_launcher"
             android:layout_weight="1"
-            android:background="#304ffe" />
+            android:background="@drawable/imagebuttonanimation_blue" />
 
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:id="@+id/greenButton"
-            android:src="@android:drawable/ic_menu_gallery"
+            android:src="@mipmap/ic_launcher"
             android:layout_weight="1"
-            android:background="#00c853" />
+            android:background="@drawable/imagebuttonanimation_green" />
     </LinearLayout>
 
 </LinearLayout>
