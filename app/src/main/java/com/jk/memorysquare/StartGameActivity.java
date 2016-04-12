@@ -11,6 +11,8 @@ import android.widget.Button;
 
 public class StartGameActivity extends AppCompatActivity {
 
+    Button startButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,7 @@ public class StartGameActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //Start game button launches PlayGameActivity
-        Button startButton = (Button) findViewById(R.id.startButton);
+        startButton = (Button) findViewById(R.id.startButton);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,14 +31,6 @@ public class StartGameActivity extends AppCompatActivity {
             }
         });
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
 }
