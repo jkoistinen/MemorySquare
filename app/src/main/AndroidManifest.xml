@@ -11,14 +11,16 @@
         <activity
             android:name=".StartGameActivity"
             android:label="@string/title_activity_start_game"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PlayGameActivity"></activity>
+        <activity
+            android:name=".PlayGameActivity"
+            ></activity>
     </application>
 
 </manifest>
