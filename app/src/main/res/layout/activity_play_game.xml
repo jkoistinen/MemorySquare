@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="fill_parent"
@@ -8,50 +8,66 @@ tools:context="com.jk.memorysquare.PlayGameActivity"
     android:orientation="vertical">
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/redButton"
-            android:layout_weight="1"
-            android:src="@drawable/imagebuttonanimation"
-            android:background="@color/myRed" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/yellowButton"
-            android:src="@drawable/imagebuttonanimation"
-            android:layout_weight="1"
-            android:background="@color/myYellow" />
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/redButton"
+                android:layout_weight="1"
+                android:src="@drawable/imagebuttonanimation"
+                android:background="@color/myRed" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/yellowButton"
+                android:src="@drawable/imagebuttonanimation"
+                android:layout_weight="1"
+                android:background="@color/myYellow" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/blueButton"
+                android:src="@drawable/imagebuttonanimation"
+                android:layout_weight="1"
+                android:background="@color/myBlue" />
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:id="@+id/greenButton"
+                android:src="@drawable/imagebuttonanimation"
+                android:layout_weight="1"
+                android:background="@color/myGreen" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Level 1"
+        android:id="@+id/textView"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="36sp" />
 
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/blueButton"
-            android:src="@drawable/imagebuttonanimation"
-            android:layout_weight="1"
-            android:background="@color/myBlue" />
-
-        <ImageButton
-            android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:id="@+id/greenButton"
-            android:src="@drawable/imagebuttonanimation"
-            android:layout_weight="1"
-            android:background="@color/myGreen" />
-    </LinearLayout>
-
-</LinearLayout>
+</FrameLayout>
 
