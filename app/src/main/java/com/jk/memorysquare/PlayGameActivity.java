@@ -1,11 +1,7 @@
 package com.jk.memorysquare;
 
-import android.animation.AnimatorInflater;
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -13,8 +9,6 @@ import android.view.animation.AnimationUtils;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class PlayGameActivity extends AppCompatActivity {
 
@@ -28,8 +22,8 @@ public class PlayGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_game);
 
-        //set animation on textview
-        final TextView overlayText = (TextView) findViewById(R.id.textView);
+        //set animation on overlayText
+        final TextView overlayText = (TextView) findViewById(R.id.overlayText);
 
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
         in.setDuration(3000);
