@@ -67,7 +67,8 @@ tools:context="com.jk.memorysquare.PlayGameActivity"
         android:id="@+id/textView"
         android:layout_gravity="center"
         android:textStyle="bold"
-        android:textSize="36sp" />
+        android:textSize="36sp"
+        android:visibility="invisible" />
 
 </FrameLayout>
 

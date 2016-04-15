@@ -70,7 +70,9 @@
         android:id="@+id/startButton"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:background="@color/primary_dark_material_light"
+        android:ellipsize="marquee" />
 
 
 </FrameLayout>
