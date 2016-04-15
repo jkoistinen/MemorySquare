@@ -60,11 +60,6 @@ public class PlayGameActivity extends AppCompatActivity {
         blueButton = (ImageButton) findViewById(R.id.blueButton);
         greenButton = (ImageButton) findViewById(R.id.greenButton);
 
-        //animate a few imagebuttons once, just for show....
-        RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(this, R.anim.flipimagebutton);
-        redButton.startAnimation(ranim);
-        greenButton.startAnimation(ranim);
-
         redButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
