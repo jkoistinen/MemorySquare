@@ -29,6 +29,28 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
         view.startAnimation(ranim);
     }
 
+    int getCurrentLevel(){
+        int level = 2;
+        return level;
+    }
+
+    void changeTurnoverlayText(){
+
+        TextView overlayText = (TextView) findViewById(R.id.overlayText);
+        overlayText.setText("Your turn!");
+
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
+        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
+        overlayText.startAnimation(fadeIn);
+        overlayText.startAnimation(fadeOut);
+        fadeIn.setDuration(1000);
+        fadeIn.setFillAfter(true);
+        fadeOut.setDuration(1000);
+        fadeOut.setFillAfter(true);
+        fadeOut.setStartOffset(1000+fadeIn.getStartOffset());
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +72,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
             @Override
             public void onAnimationStart(Animation animation) {
-                overlayText.setText("Level 1");
+                overlayText.setText("Level "+getCurrentLevel());
             }
 
             @Override
@@ -66,8 +88,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
                     public void onAnimationEnd(Animation animation) {
 
                         //Animate the moves for current level after the out animation is done
-                        MyUIHandlerThread.triggerAnimations(10);
-
+                        MyUIHandlerThread.triggerAnimations(getCurrentLevel());
                     }
 
                     @Override
@@ -161,6 +182,9 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
                 break;
             case 4:
                 animateButton(findViewById(R.id.greenButton));
+                break;
+            case 5:
+                changeTurnoverlayText();
                 break;
             default:
                 break;
