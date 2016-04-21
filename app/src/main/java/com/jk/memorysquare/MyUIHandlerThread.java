@@ -12,6 +12,8 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
     private static Handler handler, callback;
 
+    public String levelSequence = "123312341234";
+
     public MyUIHandlerThread(String name) {
         super(name);
         // Not used
@@ -36,8 +38,6 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
         int level = msg.what;
 
-        String levelSequence = "1234123412341234";
-
         int delay = 0; //delay in millisecond
         for(int i = 0; i < level; i++) {
 
@@ -51,7 +51,7 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
             // send it 5 and that will trigger the switchcase in PlayGameActivity
             if(i == level-1) {
-                callback.sendMessageDelayed(Message.obtain(null, 1, 5), 2000);
+                callback.sendMessageDelayed(Message.obtain(null, 1, 5), delay);
             }
 
         }

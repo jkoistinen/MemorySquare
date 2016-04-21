@@ -30,7 +30,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
     }
 
     int getCurrentLevel(){
-        int level = 2;
+        int level = 7;
         return level;
     }
 
