@@ -1,5 +1,6 @@
 package com.jk.memorysquare;
 
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
         private static Integer totalCorrectGuesses = 0;
 
-        private static Integer currentLevel = 1;
+        public static final String USERPREFERENCEFILE = "MyPrefsFile";
 
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
@@ -44,16 +45,31 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
     }
 
     int getCurrentLevel(){
-        return currentLevel;
+
+        SharedPreferences prefs = getSharedPreferences(USERPREFERENCEFILE, MODE_PRIVATE);
+        Integer restoredLevel = prefs.getInt("level", 1);
+
+        return restoredLevel;
     }
 
     void setNextLevel(){
-        currentLevel++;
+
+        SharedPreferences prefs = getSharedPreferences(USERPREFERENCEFILE, MODE_PRIVATE);
+        Integer restoredLevel = prefs.getInt("level", 1);
+
+        restoredLevel++;
+
+        SharedPreferences.Editor editor = getSharedPreferences(USERPREFERENCEFILE, MODE_PRIVATE).edit();
+        editor.putInt("level", restoredLevel);
+        editor.commit();
+        Log.d(TAG,  "new level stored!");
+
     }
 
     void saveGuess(int id){
         guessedSequence.add(id);
         guessCounter++;
+
     }
 
     void verifyGuess(){
@@ -70,10 +86,6 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
                 nextLevel();
             }
 
-            //More checks that this was the last verification and then start new level.
-            //Increment level count etc etc.....
-            // This needs to by passed on the new or restarted activity.
-            //Also levelCount should be stored as a sharedPreference to be loaded next time the user open app.
         } else {
             Log.d(TAG, "Incorrect!");
             restartLevel();
