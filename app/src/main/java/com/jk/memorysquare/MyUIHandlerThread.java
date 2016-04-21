@@ -12,8 +12,6 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
     private static Handler handler, callback;
 
-    public String levelSequence = "123312341234";
-
     public MyUIHandlerThread(String name) {
         super(name);
         // Not used
@@ -41,7 +39,7 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
         int delay = 0; //delay in millisecond
         for(int i = 0; i < level; i++) {
 
-            int x = Character.getNumericValue(levelSequence.charAt(i));
+            int x = Character.getNumericValue(PlayGameActivity.levelSequence.charAt(i));
 
             callback.sendMessageDelayed(Message.obtain(null, 1, x), delay);
 

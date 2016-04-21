@@ -24,6 +24,8 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
         private MyUIHandlerThread myCustomHandlerThread;
         private Handler myHandler;
 
+        public static String levelSequence = "123312341234";
+
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
         view.startAnimation(ranim);
@@ -47,7 +49,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
         fadeIn.setFillAfter(true);
         fadeOut.setDuration(1000);
         fadeOut.setFillAfter(true);
-        fadeOut.setStartOffset(1000+fadeIn.getStartOffset());
+        fadeOut.setStartOffset(1000 + fadeIn.getStartOffset());
 
     }
 
