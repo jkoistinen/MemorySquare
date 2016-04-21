@@ -3,15 +3,12 @@ package com.jk.memorysquare;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+import android.util.Log;
 
 /**
  * Created by jk on 19/04/16.
  */
 public class MyUIHandlerThread extends HandlerThread implements Handler.Callback {
-
-    public static final int MSG_FINISHED = 100;
-    public static final int MSG_COUNT_UP = 101;
-    public static final int MSG_COUNT_DOWN = 102;
 
     private static Handler handler, callback;
 
@@ -36,45 +33,25 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
     @Override
     public boolean handleMessage(Message msg) {
-        int data1 = msg.arg1;
-        int data2 = msg.arg2;
-        int counter;
 
-        switch (msg.what) {
-            case MSG_COUNT_UP:
-                for (counter = data1; counter < data2; counter++) {
-                    //...
-                }
-                callback.sendMessage(Message.obtain(null, MSG_FINISHED, counter));
-                break;
-            case MSG_COUNT_DOWN:
-                for (counter = data1; counter > data2; counter--) {
-                    //...    }
-                    callback.sendMessage(Message.obtain(null, MSG_FINISHED, counter));
-                    break;
-                }
-                return true;
+        int level = msg.what;
+
+        String levelSequence = "1122334411";
+
+        int delay = 0; //delay in millisecond
+        for(int i = 0; i < level; i++) {
+
+            int x = Character.getNumericValue(levelSequence.charAt(i));
+
+            callback.sendMessageDelayed(Message.obtain(null, 1, x), delay);
+
+            delay = delay + 1000; //add 1000ms to next animation
+
         }
-        return true;
+    return true;
     }
 
-    public static void bounceBox(int i) {
-
-    }
-
-    public static void querySomething(int start, int end) {
-        if (start > end) {
-            Message msg = Message.obtain(null,//Handler h
-                    MSG_COUNT_DOWN, //int what
-                    start,//int arg1
-                    end); //int arg2
-            handler.sendMessage(msg);
-        } else if (start < end) {
-            Message msg = Message.obtain(null, //Handler h
-                    MSG_COUNT_UP, //int what
-                    start,//int arg1
-                    end); //int arg2
-            handler.sendMessage(msg);
-        }
+    public static void triggerAnimations(int level) {
+        handler.sendEmptyMessage(level);
     }
 }

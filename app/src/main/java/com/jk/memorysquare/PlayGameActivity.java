@@ -1,8 +1,6 @@
 package com.jk.memorysquare;
 
 import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -26,13 +24,6 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
         private MyUIHandlerThread myCustomHandlerThread;
         private Handler myHandler;
 
-    public void runCurrentLevelAnimations() {
-
-        //read in previous animation sequence from some list
-        MyUIHandlerThread.querySomething(100, 150);
-
-    }
-
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
         view.startAnimation(ranim);
@@ -45,16 +36,18 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
         myHandler = new Handler(this);
 
-        //set animation on overlayText
         final TextView overlayText = (TextView) findViewById(R.id.overlayText);
 
         final Animation in = new AlphaAnimation(0.0f, 1.0f);
-        in.setDuration(3000);
+        in.setDuration(1000);
 
         final Animation out = new AlphaAnimation(1.0f, 0.0f);
-        out.setDuration(3000);
+        out.setDuration(1000);
 
         in.setAnimationListener(new Animation.AnimationListener() {
+
+            TextView overlayText = (TextView) findViewById(R.id.overlayText);
+
             @Override
             public void onAnimationStart(Animation animation) {
                 overlayText.setText("Level 1");
@@ -66,20 +59,20 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
                 out.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-
+                        //Not used for now
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
 
                         //Animate the moves for current level after the out animation is done
-                        runCurrentLevelAnimations();
+                        MyUIHandlerThread.triggerAnimations(10);
 
                     }
 
                     @Override
                     public void onAnimationRepeat(Animation animation) {
-
+                        //Not used for now
                     }
                 });
 
@@ -154,8 +147,24 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
     @Override
     public boolean handleMessage(Message arg0) {
         int result = (Integer)arg0.obj;
-        Log.d("PlayGameActivity", "result:" + result );
-        animateButton(findViewById(R.id.greenButton));
+        Log.d("PlayGameActivity", "result:" + result);
+
+        switch (result) {
+            case 1:
+                animateButton(findViewById(R.id.redButton));
+                break;
+            case 2:
+                animateButton(findViewById(R.id.yellowButton));
+                break;
+            case 3:
+                animateButton(findViewById(R.id.blueButton));
+                break;
+            case 4:
+                animateButton(findViewById(R.id.greenButton));
+                break;
+            default:
+                break;
+        }
 
         return false;
     }
