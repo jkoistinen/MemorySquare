@@ -51,7 +51,7 @@ public class MyUIHandlerThread extends HandlerThread implements Handler.Callback
 
             // send it 5 and that will trigger the switchcase in PlayGameActivity
             if(i == level-1) {
-                callback.sendMessageDelayed(Message.obtain(null, 1, 5), 1000);
+                callback.sendMessageDelayed(Message.obtain(null, 1, 5), 2000);
             }
 
         }
