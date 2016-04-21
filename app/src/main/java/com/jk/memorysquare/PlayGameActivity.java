@@ -13,6 +13,8 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class PlayGameActivity extends AppCompatActivity implements Handler.Callback{
 
         ImageButton redButton;
@@ -24,7 +26,13 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
         private MyUIHandlerThread myCustomHandlerThread;
         private Handler myHandler;
 
+        private static String TAG = "PlayGameActivity";
+
         public static String levelSequence = "123312341234";
+
+        private static ArrayList<Integer> guessedSequence = new ArrayList<>();
+
+        private static Integer guessCounter = 0;
 
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
@@ -32,8 +40,30 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
     }
 
     int getCurrentLevel(){
-        int level = 7;
+        int level = 3;
         return level;
+    }
+
+    void saveGuess(int id){
+        Log.d(TAG, "id:" + id);
+        guessedSequence.add(id);
+        guessCounter++;
+        Log.d(TAG, "guessCounter " + guessCounter);
+    }
+
+    void verifyGuess(){
+        int thisGuess = guessedSequence.get(guessCounter-1);
+        int correctGuess = Character.getNumericValue(levelSequence.charAt(guessCounter-1));
+
+        if(thisGuess == correctGuess){
+            Log.d(TAG, "Correct!");
+            //More checks that this was the last verification and then start new level.
+            //Increment level count etc etc.....
+        } else {
+            Log.d(TAG, "Incorrect!");
+            //Restart level
+        }
+
     }
 
     void changeTurnoverlayText(){
@@ -123,6 +153,8 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
             @Override
             public void onClick(View view) {
                 animateButton(view);
+                saveGuess(1);
+                verifyGuess();
             }
         });
 
@@ -130,6 +162,9 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
             @Override
             public void onClick(View view) {
                 animateButton(view);
+                saveGuess(2);
+                verifyGuess();
+
             }
         });
 
@@ -137,6 +172,8 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
             @Override
             public void onClick(View view) {
                 animateButton(view);
+                saveGuess(3);
+                verifyGuess();
             }
         });
 
@@ -144,6 +181,8 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
             @Override
             public void onClick(View view) {
                 animateButton(view);
+                saveGuess(4);
+                verifyGuess();
             }
         });
 
