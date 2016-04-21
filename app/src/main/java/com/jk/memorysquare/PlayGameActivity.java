@@ -34,21 +34,26 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
         private static Integer guessCounter = 0;
 
+        private static Integer totalCorrectGuesses = 0;
+
+        private static Integer currentLevel = 1;
+
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
         view.startAnimation(ranim);
     }
 
     int getCurrentLevel(){
-        int level = 3;
-        return level;
+        return currentLevel;
+    }
+
+    void setNextLevel(){
+        currentLevel++;
     }
 
     void saveGuess(int id){
-        Log.d(TAG, "id:" + id);
         guessedSequence.add(id);
         guessCounter++;
-        Log.d(TAG, "guessCounter " + guessCounter);
     }
 
     void verifyGuess(){
@@ -57,13 +62,31 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
         if(thisGuess == correctGuess){
             Log.d(TAG, "Correct!");
+            totalCorrectGuesses++;
+
+            if(totalCorrectGuesses == getCurrentLevel()){
+                Log.d(TAG, "Level won!");
+                setNextLevel();
+                nextLevel();
+            }
+
             //More checks that this was the last verification and then start new level.
             //Increment level count etc etc.....
+            // This needs to by passed on the new or restarted activity.
+            //Also levelCount should be stored as a sharedPreference to be loaded next time the user open app.
         } else {
             Log.d(TAG, "Incorrect!");
-            //Restart level
+            restartLevel();
         }
 
+    }
+
+    void nextLevel(){
+        changeoverlayText("Great! Next level...");
+    }
+
+    void restartLevel(){
+        changeoverlayText("Oopsie...");
     }
 
     void changeTurnoverlayText(){
@@ -83,12 +106,52 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_play_game);
+    void changeoverlayText(String text){
 
+        TextView overlayText = (TextView) findViewById(R.id.overlayText);
+        overlayText.setText(text);
+
+        AlphaAnimation fadeIn = new AlphaAnimation(0.0f , 1.0f ) ;
+        AlphaAnimation fadeOut = new AlphaAnimation( 1.0f , 0.0f ) ;
+
+        fadeOut.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                loadGame();
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+        overlayText.startAnimation(fadeIn);
+        overlayText.startAnimation(fadeOut);
+        fadeIn.setDuration(1000);
+        fadeIn.setFillAfter(true);
+        fadeOut.setDuration(1000);
+        fadeOut.setFillAfter(true);
+        fadeOut.setStartOffset(1000 + fadeIn.getStartOffset());
+
+    }
+
+    void loadGame(){
         myHandler = new Handler(this);
+
+        //clear guessCounter
+        guessCounter = 0;
+
+        //clear guessedSequence
+        guessedSequence.clear();
+
+        //clear totalCorrectGuesses
+        totalCorrectGuesses = 0;
 
         final TextView overlayText = (TextView) findViewById(R.id.overlayText);
 
@@ -186,6 +249,13 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
             }
         });
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_play_game);
+        loadGame();
     }
 
     @Override
