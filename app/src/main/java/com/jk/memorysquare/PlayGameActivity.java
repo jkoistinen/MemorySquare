@@ -42,6 +42,9 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
     void animateButton(View view){
         RotateAnimation ranim = (RotateAnimation) AnimationUtils.loadAnimation(view.getContext(), R.anim.flipimagebutton);
         view.startAnimation(ranim);
+
+        AudioPlayer ap = new AudioPlayer();
+        ap.play(view.getContext(), R.raw.bonfirearrow);
     }
 
     int getCurrentLevel(){
