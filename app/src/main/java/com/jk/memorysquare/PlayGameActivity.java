@@ -29,7 +29,7 @@ public class PlayGameActivity extends AppCompatActivity implements Handler.Callb
 
         private static String TAG = "PlayGameActivity";
 
-        public static String levelSequence = "123312341234";
+        public static String levelSequence = "124234412343211231234";
 
         private static ArrayList<Integer> guessedSequence = new ArrayList<>();
 
